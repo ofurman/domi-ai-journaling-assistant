@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { Conversation } from '@11labs/client';
 import { Button } from "@/components/ui/button";
@@ -97,12 +98,12 @@ const Index = () => {
         
         <CardContent className="space-y-6">
           <div className="flex justify-center mb-6">
-            <div className="relative flex items-center justify-center h-24 w-24">
+            <div className="relative flex items-center justify-center h-32 w-32">
               {agentStatus === 'speaking' && <SpeakingOrb />}
               <img 
                 src="/lovable-uploads/87084226-26ac-4812-b2c2-e5cc7b34d106.png" 
                 alt="AI Assistant Avatar" 
-                className="absolute w-24 h-24 object-cover z-10"
+                className="absolute w-32 h-32 object-cover z-10"
               />
             </div>
           </div>
@@ -111,18 +112,18 @@ const Index = () => {
             <Button
               onClick={conversation ? stopConversation : startConversation}
               disabled={isLoading}
-              className={`w-32 h-32 rounded-full transition-all duration-300 ${
+              className={`w-24 h-24 rounded-full transition-all duration-300 ${
                 conversation 
                   ? 'bg-red-400 hover:bg-red-500' 
                   : 'bg-blue-500 hover:bg-blue-600'
               }`}
             >
               {isLoading ? (
-                <Loader2 className="h-8 w-8 animate-spin" />
+                <Loader2 className="h-10 w-10 animate-spin" />
               ) : conversation ? (
-                <MicOff className="h-8 w-8" />
+                <MicOff className="h-10 w-10" />
               ) : (
-                <Mic className="h-8 w-8" />
+                <Mic className="h-10 w-10" />
               )}
             </Button>
           </div>
