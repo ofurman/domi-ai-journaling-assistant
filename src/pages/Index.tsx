@@ -103,7 +103,7 @@ const Index = () => {
               <img 
                 src="/lovable-uploads/87084226-26ac-4812-b2c2-e5cc7b34d106.png" 
                 alt="AI Assistant Avatar" 
-                className="absolute w-40 h-40 object-cover z-10"
+                className="absolute w-40 h-40 object-cover rounded-full z-10"
               />
             </div>
           </div>
