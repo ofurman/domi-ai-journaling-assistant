@@ -8,6 +8,7 @@ declare global {
       'elevenlabs-convai': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
         'agent-id': string;
         'dynamic-variables'?: string;
+        'variant'?: 'expanded' | 'compact';
       };
     }
   }
@@ -40,6 +41,7 @@ export const ElevenLabsWidget = () => {
     <elevenlabs-convai 
       agent-id="w6UPLbT9UrQACYRfMou2"
       dynamic-variables={dynamicVariables}
+      variant="expanded"
     />
   );
 };
