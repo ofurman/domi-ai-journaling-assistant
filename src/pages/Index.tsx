@@ -17,9 +17,7 @@ const Index = () => {
     const fetchVariables = async () => {
       try {
         const response = await fetch('https://hook.eu2.make.com/a8dem7kybx5y8sctlot33ekanso4lico');
-        const text = await response.text(); // Get response as text first
-        
-        // Clean the JSON string by removing control characters
+        const text = await response.text();
         const cleanJson = text.replace(/[\u0000-\u001F\u007F-\u009F]/g, "");
         
         try {
@@ -30,7 +28,6 @@ const Index = () => {
           });
         } catch (parseError) {
           console.error('Error parsing JSON:', parseError);
-          // Use default values if JSON parsing fails
           setDynamicVariables({
             first_message: "Hello!",
             custom_prompt: "",
@@ -38,7 +35,6 @@ const Index = () => {
         }
       } catch (error) {
         console.error('Error fetching dynamic variables:', error);
-        // Use default values if fetch fails
         setDynamicVariables({
           first_message: "Hello!",
           custom_prompt: "",
@@ -112,7 +108,7 @@ const Index = () => {
             <Button
               onClick={startConversation}
               disabled={conversation !== null || isLoading}
-              className="w-full sm:w-auto relative"
+              className="w-full sm:w-auto"
               variant={conversation ? "secondary" : "default"}
             >
               {isLoading ? (
