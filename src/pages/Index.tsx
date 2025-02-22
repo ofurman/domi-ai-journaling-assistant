@@ -92,7 +92,7 @@ const Index = () => {
             Domi
           </CardTitle>
           <CardDescription className="text-violet-600">
-            Your AI companion
+            AI Journaling Assistant
           </CardDescription>
         </CardHeader>
         
