@@ -4,7 +4,7 @@ import { Conversation } from '@11labs/client';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import SpeakingOrb from "@/components/SpeakingOrb";
-import { Mic, MicOff } from "lucide-react";
+import { Loader2, Mic, MicOff } from "lucide-react";
 
 const Index = () => {
   const [conversation, setConversation] = useState<any>(null);
@@ -56,15 +56,18 @@ const Index = () => {
         dynamicVariables: dynamicVariables,
         onConnect: () => {
           setConnectionStatus('Connected');
+          console.log('Status: Connected');
         },
         onDisconnect: () => {
           setConnectionStatus('Disconnected');
+          console.log('Status: Disconnected');
         },
         onError: (error) => {
           console.error('Error:', error);
         },
         onModeChange: (mode) => {
           setAgentStatus(mode.mode === 'speaking' ? 'speaking' : 'listening');
+          console.log(`Agent is ${mode.mode}`);
         },
       });
 
@@ -82,61 +85,48 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white flex flex-col items-center justify-center px-4 py-6 sm:p-8">
-      <Card className="w-full max-w-md">
+    <div className="min-h-screen bg-gradient-to-b from-violet-50 to-white flex flex-col items-center justify-center px-4 py-6 sm:p-8">
+      <Card className="w-full max-w-md bg-white/70 backdrop-blur-sm">
         <CardHeader className="text-center space-y-2">
-          <CardTitle className="text-2xl sm:text-3xl">
-            ElevenLabs AI
+          <CardTitle className="text-2xl sm:text-3xl text-violet-900">
+            Domi
           </CardTitle>
-          <CardDescription>
-            Start a conversation with our AI assistant
+          <CardDescription className="text-violet-600">
+            Your AI companion
           </CardDescription>
         </CardHeader>
         
         <CardContent className="space-y-6">
-          <div className="flex justify-center">
-            {agentStatus === 'speaking' && connectionStatus === 'Connected' ? (
+          <div className="flex justify-center mb-6">
+            {agentStatus === 'speaking' ? (
               <SpeakingOrb />
             ) : (
-              <div className="h-24 flex items-center justify-center text-gray-400">
-                {connectionStatus === 'Connected' ? <Mic size={48} /> : <MicOff size={48} />}
+              <div className="h-24 w-24 rounded-full bg-violet-100 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-full bg-violet-200 flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-full bg-violet-300" />
+                </div>
               </div>
             )}
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="flex justify-center">
             <Button
-              onClick={startConversation}
-              disabled={conversation !== null || isLoading}
-              className="w-full sm:w-auto"
-              variant={conversation ? "secondary" : "default"}
+              onClick={conversation ? stopConversation : startConversation}
+              disabled={isLoading}
+              className={`w-32 h-32 rounded-full transition-all duration-300 ${
+                conversation 
+                  ? 'bg-red-400 hover:bg-red-500' 
+                  : 'bg-blue-500 hover:bg-blue-600'
+              }`}
             >
               {isLoading ? (
-                <span className="flex items-center justify-center">
-                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  Loading...
-                </span>
+                <Loader2 className="h-8 w-8 animate-spin" />
+              ) : conversation ? (
+                <MicOff className="h-8 w-8" />
               ) : (
-                'Start Conversation'
+                <Mic className="h-8 w-8" />
               )}
             </Button>
-            
-            <Button
-              onClick={stopConversation}
-              disabled={conversation === null}
-              variant="destructive"
-              className="w-full sm:w-auto"
-            >
-              Stop Conversation
-            </Button>
-          </div>
-
-          <div className="text-center space-y-2 text-sm text-muted-foreground">
-            <p>Status: <span className="font-medium text-foreground">{connectionStatus}</span></p>
-            <p>Agent is <span className="font-medium text-foreground">{agentStatus}</span></p>
           </div>
         </CardContent>
       </Card>
