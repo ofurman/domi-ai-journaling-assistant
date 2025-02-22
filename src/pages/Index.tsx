@@ -98,12 +98,12 @@ const Index = () => {
         
         <CardContent className="space-y-6">
           <div className="flex justify-center mb-6">
-            <div className="relative flex items-center justify-center h-32 w-32">
+            <div className="relative flex items-center justify-center h-40 w-40">
               {agentStatus === 'speaking' && <SpeakingOrb />}
               <img 
                 src="/lovable-uploads/87084226-26ac-4812-b2c2-e5cc7b34d106.png" 
                 alt="AI Assistant Avatar" 
-                className="absolute w-32 h-32 object-cover z-10"
+                className="absolute w-40 h-40 object-cover z-10"
               />
             </div>
           </div>
@@ -112,18 +112,18 @@ const Index = () => {
             <Button
               onClick={conversation ? stopConversation : startConversation}
               disabled={isLoading}
-              className={`w-24 h-24 rounded-full transition-all duration-300 ${
+              className={`w-20 h-20 rounded-full transition-all duration-300 ${
                 conversation 
                   ? 'bg-red-400 hover:bg-red-500' 
                   : 'bg-blue-500 hover:bg-blue-600'
               }`}
             >
               {isLoading ? (
-                <Loader2 className="h-10 w-10 animate-spin" />
+                <Loader2 className="h-8 w-8 animate-spin" />
               ) : conversation ? (
-                <MicOff className="h-10 w-10" />
+                <MicOff className="h-8 w-8" />
               ) : (
-                <Mic className="h-10 w-10" />
+                <Mic className="h-8 w-8" />
               )}
             </Button>
           </div>
