@@ -2,6 +2,7 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
+import { ElevenLabsWidget } from "../components/ElevenLabsWidget";
 
 const NotFound = () => {
   const location = useLocation();
@@ -34,6 +35,9 @@ const NotFound = () => {
         >
           Return Home
         </a>
+        <div className="mt-8">
+          <ElevenLabsWidget />
+        </div>
       </motion.div>
     </div>
   );

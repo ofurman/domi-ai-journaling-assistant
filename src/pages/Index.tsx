@@ -1,6 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { ElevenLabsWidget } from "../components/ElevenLabsWidget";
 
 const links = [
   {
@@ -56,6 +57,15 @@ const Index = () => {
               </Link>
             </motion.div>
           ))}
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="mt-8"
+        >
+          <ElevenLabsWidget />
         </motion.div>
       </div>
     </div>
