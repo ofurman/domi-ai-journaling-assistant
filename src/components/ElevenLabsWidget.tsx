@@ -20,8 +20,8 @@ export const ElevenLabsWidget = () => {
     const fetchVariables = async () => {
       try {
         const response = await fetch('https://hook.eu2.make.com/a8dem7kybx5y8sctlot33ekanso4lico');
-        const data = await response.json();
-        setDynamicVariables(JSON.stringify(data));
+        const text = await response.text();
+        setDynamicVariables(text);
       } catch (error) {
         console.error('Error fetching dynamic variables:', error);
       }
