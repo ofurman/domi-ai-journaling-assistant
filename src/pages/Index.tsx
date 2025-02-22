@@ -4,7 +4,7 @@ import { Conversation } from '@11labs/client';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import SpeakingOrb from "@/components/SpeakingOrb";
-import { Loader2, Mic, MicOff } from "lucide-react";
+import { Loader2, Mic, MicOff, Book } from "lucide-react";
 
 const Index = () => {
   const [conversation, setConversation] = useState<any>(null);
@@ -12,6 +12,7 @@ const Index = () => {
   const [agentStatus, setAgentStatus] = useState("listening");
   const [dynamicVariables, setDynamicVariables] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [conversationEnded, setConversationEnded] = useState(false);
 
   useEffect(() => {
     const fetchVariables = async () => {
@@ -49,6 +50,7 @@ const Index = () => {
 
   const startConversation = async () => {
     try {
+      setConversationEnded(false);
       await navigator.mediaDevices.getUserMedia({ audio: true });
 
       const conv = await Conversation.startSession({
@@ -81,6 +83,7 @@ const Index = () => {
     if (conversation) {
       await conversation.endSession();
       setConversation(null);
+      setConversationEnded(true);
     }
   };
 
@@ -108,7 +111,7 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="flex justify-center">
+          <div className="flex flex-col items-center gap-4">
             <Button
               onClick={conversation ? stopConversation : startConversation}
               disabled={isLoading}
@@ -126,6 +129,23 @@ const Index = () => {
                 <Mic className="h-8 w-8" />
               )}
             </Button>
+
+            {conversationEnded && (
+              <Button
+                variant="outline"
+                asChild
+                className="flex items-center gap-2"
+              >
+                <a 
+                  href="https://www.notion.so/Daily-Notes-1a29e227435080ffb552d5f6c4794339"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Book className="h-4 w-4" />
+                  Notes
+                </a>
+              </Button>
+            )}
           </div>
         </CardContent>
       </Card>
