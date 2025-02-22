@@ -85,13 +85,13 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#EFDAB5] to-[#ECD3B5] flex flex-col items-center justify-center px-4 py-6 sm:p-8">
-      <Card className="w-full max-w-md bg-[#ECD3B5]/70 backdrop-blur-sm">
+    <div className="min-h-screen bg-gradient-to-b from-violet-50 to-white flex flex-col items-center justify-center px-4 py-6 sm:p-8">
+      <Card className="w-full max-w-md bg-white/70 backdrop-blur-sm">
         <CardHeader className="text-center space-y-2">
-          <CardTitle className="text-2xl sm:text-3xl text-[#9E674C]">
+          <CardTitle className="text-2xl sm:text-3xl text-violet-900">
             Domi
           </CardTitle>
-          <CardDescription className="text-[#925D6F]">
+          <CardDescription className="text-violet-600">
             Your AI companion
           </CardDescription>
         </CardHeader>
@@ -101,9 +101,9 @@ const Index = () => {
             {agentStatus === 'speaking' ? (
               <SpeakingOrb />
             ) : (
-              <div className="h-24 w-24 rounded-full bg-[#EFDAB5] flex items-center justify-center">
-                <div className="w-12 h-12 rounded-full bg-[#D1A580] flex items-center justify-center">
-                  <div className="w-8 h-8 rounded-full bg-[#9E674C]" />
+              <div className="h-24 w-24 rounded-full bg-violet-100 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-full bg-violet-200 flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-full bg-violet-300" />
                 </div>
               </div>
             )}
@@ -115,8 +115,8 @@ const Index = () => {
               disabled={isLoading}
               className={`w-32 h-32 rounded-full transition-all duration-300 ${
                 conversation 
-                  ? 'bg-[#925D6F] hover:bg-[#925D6F]/90' 
-                  : 'bg-[#9E674C] hover:bg-[#9E674C]/90'
+                  ? 'bg-red-400 hover:bg-red-500' 
+                  : 'bg-blue-500 hover:bg-blue-600'
               }`}
             >
               {isLoading ? (
