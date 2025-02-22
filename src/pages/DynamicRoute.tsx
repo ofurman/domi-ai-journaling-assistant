@@ -2,6 +2,17 @@
 import { useParams, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 
+// Declare the custom element for TypeScript
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'elevenlabs-convai': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        'agent-id': string;
+      };
+    }
+  }
+}
+
 const DynamicRoute = () => {
   const { path } = useParams();
   const location = useLocation();
@@ -47,7 +58,7 @@ const DynamicRoute = () => {
             transition={{ delay: 0.4 }}
             className="mt-8"
           >
-            <elevenlabs-convai agent-id="<replace-with-your-agent-id>"></elevenlabs-convai>
+            <elevenlabs-convai agent-id="w6UPLbT9UrQACYRfMou2"></elevenlabs-convai>
           </motion.div>
         </motion.div>
       </div>
