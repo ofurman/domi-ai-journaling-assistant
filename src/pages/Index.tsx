@@ -12,13 +12,32 @@ const Index = () => {
     const fetchVariables = async () => {
       try {
         const response = await fetch('https://hook.eu2.make.com/a8dem7kybx5y8sctlot33ekanso4lico');
-        const data = await response.json();
-        setDynamicVariables({
-          first_message: data.first_message || data.first_prompt,
-          custom_prompt: data.custom_prompt,
-        });
+        const text = await response.text(); // Get response as text first
+        
+        // Clean the JSON string by removing control characters
+        const cleanJson = text.replace(/[\u0000-\u001F\u007F-\u009F]/g, "");
+        
+        try {
+          const data = JSON.parse(cleanJson);
+          setDynamicVariables({
+            first_message: data.first_message || data.first_prompt || "Hello!",
+            custom_prompt: data.custom_prompt || "",
+          });
+        } catch (parseError) {
+          console.error('Error parsing JSON:', parseError);
+          // Use default values if JSON parsing fails
+          setDynamicVariables({
+            first_message: "Hello!",
+            custom_prompt: "",
+          });
+        }
       } catch (error) {
         console.error('Error fetching dynamic variables:', error);
+        // Use default values if fetch fails
+        setDynamicVariables({
+          first_message: "Hello!",
+          custom_prompt: "",
+        });
       }
     };
 
