@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Conversation } from '@11labs/client';
 import { Button } from "@/components/ui/button";
@@ -98,15 +97,14 @@ const Index = () => {
         
         <CardContent className="space-y-6">
           <div className="flex justify-center mb-6">
-            {agentStatus === 'speaking' ? (
-              <SpeakingOrb />
-            ) : (
-              <div className="h-24 w-24 rounded-full bg-violet-100 flex items-center justify-center">
-                <div className="w-12 h-12 rounded-full bg-violet-200 flex items-center justify-center">
-                  <div className="w-8 h-8 rounded-full bg-violet-300" />
-                </div>
-              </div>
-            )}
+            <div className="relative flex items-center justify-center h-24 w-24">
+              {agentStatus === 'speaking' && <SpeakingOrb />}
+              <img 
+                src="/lovable-uploads/87084226-26ac-4812-b2c2-e5cc7b34d106.png" 
+                alt="AI Assistant Avatar" 
+                className="absolute w-24 h-24 object-cover z-10"
+              />
+            </div>
           </div>
 
           <div className="flex justify-center">
