@@ -142,7 +142,7 @@ const Index = () => {
                   rel="noopener noreferrer"
                 >
                   <Book className="h-4 w-4" />
-                  Notes
+                  Check your Journal Entry
                 </a>
               </Button>
             )}
